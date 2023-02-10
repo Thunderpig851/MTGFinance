@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mongo:
+    container_name: "backend"
+    image: mongo:latest
+    env_file:
+      - ./.env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    volumes:
+      - mongo:/data/db
+    ports:
+      - '27017:27017'
+  next:
+    container_name: "frontend"
+    build: 
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    ports: 
+      - "3000:3000"
+  fastapi:
+    container_name: "server"
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    ports:  
+      - "8000:8000" 
+volumes:
+  mongo:
