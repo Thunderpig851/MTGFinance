@@ -18,7 +18,7 @@ class Settings(BaseModel):
     authjwt_access_cookie_key: str = 'access_token'
     authjwt_refresh_cookie_key: str = 'refresh_token'
     authjwt_cookie_csrf_protect: bool = False
-    authjwt_secret_key: str = settings.JWT_SECRET_KEY
+    authjwt_secret_key: str = settings.JWT_PRIVATE_KEY
 
 
 @AuthJWT.load_config
