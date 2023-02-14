@@ -35,5 +35,18 @@ export async function loginUser(req, res) {
     } catch(err) {
         console.log(err);
     }
-}
+};
+
+export async function getLoginImage() {
+    try {
+        const url = 'https://api.scryfall.com/cards/random'
+        const response = await fetch(url)
+        // Keep for testing.
+        if (response.ok){
+            return response.json();
+            }
+    } catch(err) {
+        console.log(err);
+    } 
+};
 

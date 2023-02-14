@@ -11,10 +11,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from './copyright';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
-import { loginUser } from '../api/authRoutes';
-
+import { loginUser, getLoginImage } from '../api/authRoutes';
 const theme = createTheme();
 
 export default function Login() {
@@ -29,12 +29,22 @@ export default function Login() {
     // Navigate user to home page after successful login 
     loginUser(data).then((res) => {
       if (res) {
-        router.push('/main_page/home')
+        router.push('/main_page/home');
       }
     })
-
   };
+  
+  // Load random card image at login
+  const [randCardImage, setRandCardImage] = useState('');
+  useEffect(() => {
+    getLoginImage()
+      .then((data) => {
+        let image = data.image_uris.art_crop;
+        setRandCardImage(image);
+      })
 
+  }, []);
+  //console.log(randCardImage);
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -45,7 +55,7 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: `url(${randCardImage})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
