@@ -12,11 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useRouter } from 'next/router'
+import Link from 'next/link';
 
 const pages = ['Home', 'Decks'];
 const settings = ['Account', 'Profile'];
 
 function ResponsiveAppBar() {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -33,6 +36,14 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  
+  const handleSettingClick  = (e, path) => {
+    e.preventDefault()
+    path.toLowerCase();
+    if (path) {
+      router.push('/' + path)
+    }
   };
 
   return (
@@ -148,9 +159,13 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+                <Link key={setting} href='/'>
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <a onClick={(e) => handleSettingClick(e, setting)}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </a>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
