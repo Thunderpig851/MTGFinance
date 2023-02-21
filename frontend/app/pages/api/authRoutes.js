@@ -1,4 +1,4 @@
-export async function registerUser(req, res) {
+export async function registerUser(req) {
     try {
         const url = 'http://localhost:8000/api/auth/register'
         const response = await fetch(url, {
@@ -16,8 +16,7 @@ export async function registerUser(req, res) {
     }
 }
 
-export async function loginUser(req, res) {
-    console.log(req)
+export async function loginUser(req) {
     try {
         const url = 'http://localhost:8000/api/auth/login'
         const response = await fetch(url, {
@@ -29,7 +28,6 @@ export async function loginUser(req, res) {
         })
         // Keep for testing.
         if (response.ok){
-            console.log(response);
             return response.json();
             }
     } catch(err) {
@@ -40,8 +38,7 @@ export async function loginUser(req, res) {
 export async function getLoginImage() {
     try {
         const url = 'https://api.scryfall.com/cards/random'
-        const response = await fetch(url)
-        // Keep for testing.
+        const response = await fetch(url);
         if (response.ok){
             return response.json();
             }

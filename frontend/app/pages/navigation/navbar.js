@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'Basic Pokedex', 'Teams'];
+const pages = ['Home', 'Decks'];
 const settings = ['Account', 'Profile'];
 
 function ResponsiveAppBar() {
@@ -128,7 +128,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="T" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

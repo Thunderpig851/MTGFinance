@@ -42,9 +42,8 @@ export default function Login() {
         let image = data.image_uris.art_crop;
         setRandCardImage(image);
       })
-
   }, []);
-  //console.log(randCardImage);
+  
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
