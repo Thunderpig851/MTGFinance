@@ -27,11 +27,12 @@ export default function Login() {
       password: data.get('password'),
     });
     // Navigate user to home page after successful login 
-    loginUser(data).then((res) => {
-      if (res) {
-        router.push('/main_page/home');
-      }
-    })
+    loginUser(data)
+      .then((res) => {
+        if (res) {
+          router.push('/main_page/home');
+        }
+      })
   };
   
   // Load random card image at login

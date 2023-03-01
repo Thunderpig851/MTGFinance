@@ -31,6 +31,7 @@ export async function loginUser(req) {
             return response.json();
             }
     } catch(err) {
+        alert('Incorrect login credentials.');
         console.log(err);
     }
 };
