@@ -14,9 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import { logoutUser } from '../api/authRoutes';
 
 const pages = ['Home', 'Decks', 'Value Tracker'];
-const settings = ['Account', 'Profile'];
+const settings = ['Account', 'Logout'];
 
 function ResponsiveAppBar() {
   const router = useRouter();
@@ -53,7 +54,10 @@ function ResponsiveAppBar() {
     e.preventDefault()
     path = path.toLowerCase();
     console.log(path);
-    if (path) {
+    if (path === 'logout') {
+      logoutUser();
+      router.push('/auth/login');
+    } else {
       router.push('/settings/' + path);
     }
   };

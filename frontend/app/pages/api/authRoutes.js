@@ -31,8 +31,22 @@ export async function loginUser(req) {
             return response.json();
             }
     } catch(err) {
+        // This is to show the user login has failed.
         alert('Incorrect login credentials.');
         console.log(err);
+    }
+};
+
+export async function logoutUser(req) {
+    try {
+        const url = 'http://localhost:8000/api/auth/logout';
+        const response = await fetch(url);
+
+        if (response.ok) {
+            return response.json();
+        }
+    } catch(err) {
+        console.log(err)
     }
 };
 
