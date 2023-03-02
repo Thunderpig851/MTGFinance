@@ -42,7 +42,7 @@ function ResponsiveAppBar() {
   const handleMenuClick = (e, path) => {
     e.preventDefault()
     path = path.toLowerCase().replace(' ', '');
-    console.log(path);
+
     if(path === 'home') {
       router.push('/main_page/home');
     } else {
@@ -53,7 +53,7 @@ function ResponsiveAppBar() {
   const handleSettingClick  = (e, path) => {
     e.preventDefault()
     path = path.toLowerCase();
-    console.log(path);
+    
     if (path === 'logout') {
       logoutUser();
       router.push('/auth/login');

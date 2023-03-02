@@ -140,4 +140,6 @@ def get_accounts():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='No accounts found')
 
     return {'status': 'success', 'accounts': accounts}
+
+
     

@@ -13,12 +13,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from './copyright';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 
 import { loginUser, getLoginImage } from '../api/authRoutes';
 const theme = createTheme();
 
 export default function Login() {
   const router = useRouter();
+
+  const [randCardImage, setRandCardImage] = useState('');
+  const [cookie, setCookie] = useCookies(['user']);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     let data = new FormData(event.currentTarget);
@@ -30,13 +35,18 @@ export default function Login() {
     loginUser(data)
       .then((res) => {
         if (res) {
+          console.log(res);
+          setCookie('user', res.access_token, {
+            path: '/',
+            maxAge: 3600, // 1 Hour expiration
+            sameSite: true,
+          })
           router.push('/main_page/home');
         }
       })
   };
   
   // Load random card image at login
-  const [randCardImage, setRandCardImage] = useState('');
   useEffect(() => {
     getLoginImage()
       .then((data) => {
