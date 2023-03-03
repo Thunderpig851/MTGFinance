@@ -36,7 +36,7 @@ export default function Login() {
       .then((res) => {
         if (res) {
           console.log(res);
-          setCookie('user', res.access_token, {
+          setCookie('access_token', res.access_token, {
             path: '/',
             maxAge: 3600, // 1 Hour expiration
             sameSite: true,
