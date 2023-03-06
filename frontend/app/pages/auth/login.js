@@ -27,20 +27,21 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     let data = new FormData(event.currentTarget);
+
     data = ({
       email: data.get('email'),
       password: data.get('password'),
     });
-    // Navigate user to home page after successful login 
+
     loginUser(data)
-      .then((res) => {
-        if (res) {
-          console.log(res);
-          setCookie('access_token', res.access_token, {
-            path: '/',
-            maxAge: 3600, // 1 Hour expiration
-            sameSite: true,
-          })
+    .then((res) => {
+      if (res) {
+        setCookie('access_token', res.access_token, {
+          path: '/',
+          maxAge: 3600, // 1 Hour expiration
+          sameSite: true,
+        })
+          // Navigate user to home page after successful login 
           router.push('/main_page/home');
         }
       })

@@ -10,5 +10,7 @@ router = APIRouter()
 
 @router.get('/me', response_model=schemas.UserResponse)
 def get_me(user_id: str = Depends(oauth2.require_user)):
+    print(user_id)
     user = userResponseEntity(User.find_one({'_id': ObjectId(str(user_id))}))
+    print(user)
     return {"status": "success", "user": user}
