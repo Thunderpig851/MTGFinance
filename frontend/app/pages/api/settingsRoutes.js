@@ -1,21 +1,16 @@
-const cookie = require('cookie-cutter');
+const axios = require('axios');
 
-export async function getUserData(req) {
-    console.log(cookie.get('access_token'));
+export async function getUserData(req, res) {
     try {
-        const url = 'http://localhost:8000/api/users/me';
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'access_token': cookie.get('access_token'),
-            }
-        })
-
-        if (response.ok) {
-            return response.json()
+        const options = {
+            method: 'get',
+            url: 'http://localhost:8000/api/users/me',
+            withCredentials: true,
         }
-
-    } catch(err) {
-        console.log(err);
+        const {data:response} = await axios(options);
+        return response;
+    } 
+    catch (error) {
+        console.log(error);
     }
 };

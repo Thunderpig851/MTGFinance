@@ -41,6 +41,16 @@ export default function Login() {
           maxAge: 3600, // 1 Hour expiration
           sameSite: true,
         })
+        setCookie('refresh_token', res.refresh_token, {
+          path: '/',
+          maxAge: 3600, // 1 Hour expiration
+          sameSite: true,
+        })
+        setCookie('logged_in', true, {
+          path: '/',
+          maxAge: 3600, // 1 Hour expiration
+          sameSite: true,
+        })
           // Navigate user to home page after successful login 
           router.push('/main_page/home');
         }
