@@ -29,7 +29,6 @@ export default function Register() {
     };
     // Navigate user to login after registration is successful
     registerUser(data).then((res) => {
-      console.log(res);
       if (res) {
         router.push('/auth/login');
       }
