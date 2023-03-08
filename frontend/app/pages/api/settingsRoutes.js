@@ -6,7 +6,7 @@ export async function getUserData(req, res) {
             method: 'get',
             url: 'http://localhost:8000/api/users/me',
             withCredentials: true,
-        }
+        };
         const {data:response} = await axios(options);
         return response;
     } 

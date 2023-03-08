@@ -1,10 +1,14 @@
 import Navbar from '../navigation/navbar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getUserData } from '../api/settingsRoutes';
 
 export default function AccountSettings() {
     // build some state here
+    const [firstName, setFirstName] = useState('')
+    // const [firstName, setFirstName] = useState('')
+    // const [firstName, setFirstName] = useState('')
+    // const [firstName, setFirstName] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -13,7 +17,7 @@ export default function AccountSettings() {
     useEffect(() => {
         getUserData()
             .then((data) => {
-                console.log(data);
+                //console.log(data);
             })  
     }, []);
 

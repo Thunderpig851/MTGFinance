@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 export async function registerUser(req) {
     try {
         const url = 'http://localhost:8000/api/auth/register'
@@ -18,23 +20,24 @@ export async function registerUser(req) {
 
 export async function loginUser(req) {
     try {
-        const url = 'http://localhost:8000/api/auth/login'
-        const response = await fetch(url, {
-            method: 'POST',
+        const options = {
+            method: 'post',
+            url: 'http://localhost:8000/api/auth/login',
             headers: {
                 'Content-Type': 'application/json',
                 },
-            body: JSON.stringify(req)
-        })
-        // Keep for testing.
-        if (response.ok){
-            return response.json();
-            }
-    } catch(err) {
-        // This is to show the user login has failed.
-        alert('Incorrect login credentials.');
-        console.log(err);
+            data: {
+                'email': req.email,
+                'password': req.password
+                }
+        };
+        const {data:response} = await axios(options);
+        return response;
     }
+    catch (error) {
+        console.log(error);
+    }
+
 };
 
 export async function logoutUser(req) {

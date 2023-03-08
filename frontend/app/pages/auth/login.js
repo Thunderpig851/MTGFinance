@@ -35,13 +35,9 @@ export default function Login() {
 
     loginUser(data)
     .then((res) => {
+      console.log(res)
       if (res) {
         setCookie('access_token', res.access_token, {
-          path: '/',
-          maxAge: 3600, // 1 Hour expiration
-          sameSite: true,
-        })
-        setCookie('refresh_token', res.refresh_token, {
           path: '/',
           maxAge: 3600, // 1 Hour expiration
           sameSite: true,
@@ -51,8 +47,8 @@ export default function Login() {
           maxAge: 3600, // 1 Hour expiration
           sameSite: true,
         })
-          // Navigate user to home page after successful login 
-          router.push('/main_page/home');
+        // Navigate user to home page after successful login 
+        router.push('/main_page/home');
         }
       })
   };

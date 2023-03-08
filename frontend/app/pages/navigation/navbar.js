@@ -14,13 +14,17 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import { useCookies } from 'react-cookie';
 import { logoutUser } from '../api/authRoutes';
+
 
 const pages = ['Home', 'Decks', 'Value Tracker'];
 const settings = ['Account', 'Logout'];
 
 function ResponsiveAppBar() {
   const router = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -56,6 +60,8 @@ function ResponsiveAppBar() {
     
     if (path === 'logout') {
       logoutUser();
+      removeCookie('access_token', {path: '/'});
+      removeCookie('logged_in', {path: '/'});
       router.push('/auth/login');
     } else {
       router.push('/settings/' + path);
