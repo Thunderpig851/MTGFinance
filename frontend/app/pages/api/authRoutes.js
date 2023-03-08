@@ -58,27 +58,19 @@ export async function logoutUser(req) {
     catch (error) {
         console.log(error);
     }
-    // try {
-    //     const url = 'http://localhost:8000/api/auth/logout';
-    //     const response = await fetch(url);
-
-    //     if (response.ok) {
-    //         return response.json();
-    //     }
-    // } catch(err) {
-    //     console.log(err)
-    // }
 };
 
 export async function getLoginImage() {
     try {
-        const url = 'https://api.scryfall.com/cards/random'
-        const response = await fetch(url);
-        if (response.ok){
-            return response.json();
-            }
-    } catch(err) {
-        console.log(err);
-    } 
+        const options = {
+            method: 'get',
+            url: 'https://api.scryfall.com/cards/random'
+        }
+        const {data:response} = await axios(options);
+        return response;
+    }
+    catch(error) {
+        console.log(error);
+    }
 };
 
