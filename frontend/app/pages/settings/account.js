@@ -5,10 +5,10 @@ import { getUserData } from '../api/settingsRoutes';
 
 export default function AccountSettings() {
     // build some state here
-    const [firstName, setFirstName] = useState('')
-    // const [firstName, setFirstName] = useState('')
-    // const [firstName, setFirstName] = useState('')
-    // const [firstName, setFirstName] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [userSince, setUserSince] = useState('')
+    const [photo, setPhoto] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -17,19 +17,18 @@ export default function AccountSettings() {
     useEffect(() => {
         getUserData()
             .then((data) => {
-                //console.log(data);
-            })  
+                console.log(data);
+                setName(data.user.name);
+                setEmail(data.user.email);
+                setPhoto(data.user.photo);
+                setUserSince(data.user.created);
+            });  
     }, []);
 
     return (
         <div>
             <Navbar />
-            {/* List out current settings,
-                maybe figure out the CSS I want to use,
-                add button to alter these settings,
-                look up user flow on preferred website
-             */}
-
+            
         </div>
     )
 };

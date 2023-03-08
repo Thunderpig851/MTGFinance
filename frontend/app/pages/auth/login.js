@@ -35,7 +35,6 @@ export default function Login() {
 
     loginUser(data)
     .then((res) => {
-      console.log(res)
       if (res) {
         setCookie('access_token', res.access_token, {
           path: '/',

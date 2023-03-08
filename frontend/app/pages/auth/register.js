@@ -22,13 +22,14 @@ export default function Register() {
     event.preventDefault();
     let data = new FormData(event.currentTarget);
     data = {
-      name: data.get('firstName') + ' ' + data.get('lastName'),
-      email: data.get('email'),
-      password: data.get('password'),
-      passwordConfirm: data.get('passwordConfirm'),
+      'name': data.get('firstName') + ' ' + data.get('lastName'),
+      'email': data.get('email'),
+      'password': data.get('password'),
+      'passwordConfirm': data.get('passwordConfirm'),
     };
     // Navigate user to login after registration is successful
     registerUser(data).then((res) => {
+      console.log(res);
       if (res) {
         router.push('/auth/login');
       }

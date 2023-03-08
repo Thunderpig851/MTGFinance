@@ -1,21 +1,42 @@
 const axios = require('axios')
 
 export async function registerUser(req) {
+    console.log(req)
     try {
-        const url = 'http://localhost:8000/api/auth/register'
-        const response = await fetch(url, {
-            method: 'POST',
+        const options = {
+            method: 'post',
+            url: 'http://localhost:8000/api/auth/register',
             headers: {
                 'Content-Type': 'application/json',
-                },
-            body: JSON.stringify(req)
-        })
-        if (response.ok) {
-            return response.json()
+            },
+            data: {
+                'email': req.email,
+                'name': req.name,
+                'password': req.password,
+                'passwordConfirm': req.passwordConfirm
+            },
         }
-    } catch(err) {
-        console.log(err)
+        const {data:response} = await axios(options);
+        return response;
     }
+    catch (error) {
+        console.log(error);
+    }
+    // try {
+    //     const url = 'http://localhost:8000/api/auth/register'
+    //     const response = await fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             },
+    //         body: JSON.stringify(req)
+    //     })
+    //     if (response.ok) {
+    //         return response.json()
+    //     }
+    // } catch(err) {
+    //     console.log(err)
+    // }
 }
 
 export async function loginUser(req) {
@@ -25,11 +46,11 @@ export async function loginUser(req) {
             url: 'http://localhost:8000/api/auth/login',
             headers: {
                 'Content-Type': 'application/json',
-                },
+            },
             data: {
                 'email': req.email,
                 'password': req.password
-                }
+            }
         };
         const {data:response} = await axios(options);
         return response;
