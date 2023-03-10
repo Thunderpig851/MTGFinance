@@ -6,7 +6,7 @@ from app.database import User
 from .. import schemas, oauth2
 
 router = APIRouter()
-
+ 
 
 @router.get('/me', response_model=schemas.UserResponse)
 def get_me(user_id: str = Depends(oauth2.require_user)):

@@ -17,7 +17,7 @@ export default function AccountSettings() {
     useEffect(() => {
         getUserData()
             .then((data) => {
-                console.log(data);
+                console.log(data.user);
                 setName(data.user.name);
                 setEmail(data.user.email);
                 setPhoto(data.user.photo);
